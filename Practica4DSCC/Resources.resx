@@ -117,6 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="NinaB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\NinaB.tinyfnt;System.Byte[], mscorlib, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\small.tinyfnt;System.Byte[], mscorlib, Culture=neutral, PublicKeyToken=null</value>
+  </data>
   <data name="inicioWindow" xml:space="preserve">
     <value>&lt;Glide Version="1.0.7"&gt;
   &lt;Window Name="inicio" Width="320" Height="240" BackColor="33cc33"&gt;
@@ -126,11 +133,16 @@
 &lt;/Glide&gt;</value>
     <comment>Ventana inicial</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="NinaB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\NinaB.tinyfnt;System.Byte[], mscorlib, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\small.tinyfnt;System.Byte[], mscorlib, Culture=neutral, PublicKeyToken=null</value>
+  <data name="pantallaTemperatura" xml:space="preserve">
+    <value>&lt;Glide Version="1.0.7"&gt;
+  &lt;Window Name="instance115" Width="320" Height="240" BackColor="5D8FC1"&gt;
+    &lt;Button Name="atras" X="115" Y="196" Width="80" Height="32" Alpha="255" Text="Regresar" Font="4" FontColor="B56918" DisabledFontColor="808080" TintColor="C4B19D" TintAmount="0"/&gt;
+    &lt;TextBlock Name="temperatura" X="83" Y="34" Width="190" Height="40" Alpha="255" Text="Temperatura" TextAlign="Left" TextVerticalAlign="Top" Font="7" FontColor="0" BackColor="000000" ShowBackColor="False"/&gt;
+    &lt;TextBlock Name="valor" X="105" Y="144" Width="100" Height="32" Alpha="255" Text=":(" TextAlign="center" TextVerticalAlign="Top" Font="6" FontColor="0" BackColor="7ACBCA" ShowBackColor="True"/&gt;
+    &lt;TextBlock Name="update" X="103" Y="73" Width="100" Height="32" Alpha="255" Text="Valor actual" TextAlign="center" TextVerticalAlign="Top" Font="4" FontColor="0" BackColor="000000" ShowBackColor="False"/&gt;
+    &lt;ProgressBar Name="instance23061" X="115" Y="118" Width="80" Height="16" Alpha="255" Direction="Right" MaxValue="100" Value="0"/&gt;
+  &lt;/Window&gt;
+&lt;/Glide&gt;</value>
+    <comment>Pantalla para la temperatura :)</comment>
   </data>
 </root>

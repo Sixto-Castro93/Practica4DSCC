@@ -24,12 +24,17 @@ namespace Practica4DSCC
     {
         //Objetos de interface gráfica GLIDE
         private GHI.Glide.Display.Window iniciarWindow;
+        private GHI.Glide.Display.Window pantallaTemperatura;
+        
         private Button btn_inicio;
+        private Button atras;
+        private ProgressBar barra;
         String ip = "";
         private TextBlock texto;
+        private TextBlock textotemp;
         String respuesta = "";
         
-        GT.Timer timer = new GT.Timer(4000); // every second (1000ms)
+        GT.Timer timer = new GT.Timer(15000); // every second (1000ms)
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
@@ -54,12 +59,17 @@ namespace Practica4DSCC
             ethernetJ11D.UseThisNetworkInterface();
             //Carga la ventana principal
             iniciarWindow = GlideLoader.LoadWindow(Resources.GetString(Resources.StringResources.inicioWindow));
+            pantallaTemperatura = GlideLoader.LoadWindow(Resources.GetString(Resources.StringResources.pantallaTemperatura));
             GlideTouch.Initialize();
 
             //Inicializa el boton en la interface
             btn_inicio = (Button)iniciarWindow.GetChildByName("button_iniciar");
+            atras = (Button)pantallaTemperatura.GetChildByName("atras");
+            barra = (ProgressBar)pantallaTemperatura.GetChildByName("instance23061");
             texto = (TextBlock)iniciarWindow.GetChildByName("text_net_status");
+            textotemp = (TextBlock)pantallaTemperatura.GetChildByName("valor");
             btn_inicio.TapEvent += btn_inicio_TapEvent;
+            atras.TapEvent += atras_TapEvent;
             ethernetJ11D.NetworkDown += ethernetJ11D_NetworkDown;
             ethernetJ11D.NetworkUp += ethernetJ11D_NetworkUp;
             timer.Tick += timer_Tick;
@@ -68,19 +78,31 @@ namespace Practica4DSCC
             Glide.MainWindow = iniciarWindow;
         }
 
-        void request_ResponseReceived(HttpRequest sender, HttpResponse response)
+        void atras_TapEvent(object sender)
         {
-            respuesta=response.Text;
-            Debug.Print(respuesta);
-            btn_inicio.Text = respuesta;
+            timer.Stop();
             Glide.MainWindow = iniciarWindow;
+            textotemp.Text = ":(";
+            barra.Value = 0;
+           
         }
 
+  
         void timer_Tick(GT.Timer timer)
         {
             HttpRequest request = HttpHelper.CreateHttpGetRequest("http://api.thingspeak.com/channels/46434/fields/2/last");
             request.ResponseReceived += request_ResponseReceived;            request.SendRequest();
         }
+        void request_ResponseReceived(HttpRequest sender, HttpResponse response)
+        {
+            respuesta = response.Text;
+            Debug.Print(respuesta);
+            // btn_inicio.Text = respuesta;
+            textotemp.Text = respuesta;
+            barra.Value = (int)Double.Parse(respuesta);
+            Glide.MainWindow = pantallaTemperatura;
+        }
+
 
         void ethernetJ11D_NetworkUp(GTM.Module.NetworkModule sender, GTM.Module.NetworkModule.NetworkState state)
         {
@@ -105,9 +127,10 @@ namespace Practica4DSCC
 
         void btn_inicio_TapEvent(object sender)
         {
-            btn_inicio.Enabled = false;
+           
             timer.Start();
             Debug.Print("Iniciar");
+            Glide.MainWindow = pantallaTemperatura;
            
             
         }
