@@ -10,5 +10,8 @@ Este código debe de ser usado como guía y comienzo en la **Práctica 4: Intern
 * Proveer al profesor un enlace a la versión modificada de este repositorio presente en su cuenta personal.
 
 # Integrantes
-Fecha:
-* ??
+Sixto Castro R.
+Jordy Vásquez C.
+
+Fecha: 23/11/2015
+
